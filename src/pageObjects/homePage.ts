@@ -1,25 +1,25 @@
-import { Page } from "@playwright/test";
+import { Page } from '@playwright/test';
 
 export class HomePage {
+	readonly page;
+	constructor(page: Page) {
+		this.page = page;
+	}
 
-    page;
-    constructor(page:Page){
-        this.page= page;
-    }
+	idPolymerLink = 'text=Polymer';
 
-    idPolymerLink = "a[data-source='http://polymer-project.org']";
+	idPolymerWaitFor = '[placeholder="What needs to be done?"]';
 
-    idPolymerWaitFor = "div[class='todoapp'] h1";
-
-    GotoTodosURL = async ():Promise<void> => {
-		await this.page.goto("http://todomvc.com//");
+	GotoTodosURL = async (): Promise<void> => {
+		await this.page.goto('http://todomvc.com//');
 	};
 
-    GetTitle = async (): Promise<string> => {
-        return await this.page.innerText('.navbar__title');
-    }
+	ClickIntoPolymerPage = async (): Promise<void> => {
+		await this.page.click(this.idPolymerLink);
+		await this.page.waitForSelector(this.idPolymerWaitFor);
+	};
 
-
+	GetTitle = async (): Promise<string> => {
+		return await this.page.title();
+	};
 }
-
-

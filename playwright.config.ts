@@ -1,43 +1,44 @@
 // playwright.config.ts
-import { PlaywrightTestConfig, devices } from "@playwright/test";
+import { PlaywrightTestConfig, devices } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
 	use: {
 		headless: !true,
-		video: "on",
-		trace: "on",
-		screenshot: "on"
+		video: { mode: 'retain-on-failure', size: { width: 1920, height: 1080 } },
+		trace: 'on',
+		screenshot: 'on'
 	},
 	retries: 0,
 	projects: [
 		{
-			name: "Chrome Stable",
+			name: 'Chrome_Stable',
 			use: {
-				browserName: "chromium",
+				browserName: 'chromium',
+				viewport: { width: 1920, height: 1080 },
 				// Test against Chrome Stable channel.
-				channel: "chrome"
+				channel: 'chrome'
 			}
 		},
 		{
-			name: "Desktop Safari",
+			name: 'Desktop Safari',
 			use: {
-				browserName: "webkit",
+				browserName: 'webkit',
 				viewport: { width: 1200, height: 750 }
 			}
 		},
 		// Test against mobile viewports.
 		{
-			name: "Mobile Chrome",
-			use: devices["Pixel 5"]
+			name: 'Mobile Chrome',
+			use: devices['Pixel 5']
 		},
 		{
-			name: "Mobile Safari",
-			use: devices["iPhone 12"]
+			name: 'Mobile Safari',
+			use: devices['iPhone 12']
 		},
 		{
-			name: "Desktop Firefox",
+			name: 'Desktop Firefox',
 			use: {
-				browserName: "firefox",
+				browserName: 'firefox',
 				viewport: { width: 800, height: 600 }
 			}
 		}

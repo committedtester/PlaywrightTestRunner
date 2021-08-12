@@ -1,14 +1,12 @@
 import { test, expect } from '@playwright/test';
-import {HomePage} from './../pageObjects';
+import { HomePage } from './../pageObjects';
 
-test('basic test', async ({ page }) => {
-
-  const homePage= new HomePage(page);
-  await homePage.GotoTodosURL();
-
-
-
-  await page.goto('https://playwright.dev/');
-  const name = await page.innerText('.navbar__title');
-  expect(name).toBe('Playwright');
+test.describe('TodoMvc Related Tests', () => {
+	test('basic test', async ({ page }) => {
+		const homePage = new HomePage(page);
+		await homePage.GotoTodosURL();
+		await homePage.ClickIntoPolymerPage();
+		const name = await homePage.GetTitle();
+		expect(name).toBe('Polymer • TodoMVC');
+	});
 });
